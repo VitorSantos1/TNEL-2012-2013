@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE business SYSTEM "../../../business.dtd">
+<business>  
+  <competences>  
+    <competence type="Cotton" name="Cotton" stock="9000000"> 
+      <attribute name="delivery" type="int">
+          <minvalue>7</minvalue>
+          <maxvalue>31</maxvalue> 
+          <prefvalue>20</prefvalue>
+      </attribute>
+      <attribute name="price" type="float">            
+          <minvalue>1.0</minvalue>
+          <maxvalue>10.0</maxvalue> 
+          <prefvalue>10.0</prefvalue>
+      </attribute> 
+      <attribute name="quantity" type="int">            
+          <minvalue>180000</minvalue>
+          <maxvalue>900000</maxvalue> 
+          <prefvalue>850000</prefvalue>
+      </attribute>
+    </competence>  
+  </competences>       
+</business>

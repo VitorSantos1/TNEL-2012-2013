@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT ei-config						(jade-parameters, institutional-agents)>
+<!ELEMENT jade-parameters			(parameter*)>
+<!ELEMENT parameter					(#PCDATA)>
+<!ELEMENT institutional-agents		(agent+)>
+<!ELEMENT agent							(class, argument*)>
+<!ELEMENT class							(#PCDATA)>
+<!ELEMENT argument					(#PCDATA)>
+<!ATTLIST agent name 					CDATA #REQUIRED>

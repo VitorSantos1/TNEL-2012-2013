@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ei-config SYSTEM "../../ei-config.dtd">
+<ei-config>
+	<jade-parameters>
+		<parameter>local-port=2010</parameter>
+	</jade-parameters>
+	
+	<institutional-agents>
+		<agent name="negmed">
+			<class>ei.service.negotiation.qfnegotiation.QFNegotiationMediator</class>
+			<argument>service=IS-negotiation-facilitator</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+		</agent>
+		<agent name="osa">
+			<class>ei.service.ontology.OntologyMapping</class>
+			<argument>service=IS-ontology-mapping</argument>
+			<argument>wordnet_host=127.0.0.1</argument>
+			<argument>wordnet_port=6180</argument>
+			<argument>wordnet_file=config\ontomap\WordNetSimilarity.dat</argument>
+		</agent>
+		<agent name="notary">
+			<class>ei.service.notary.Notary</class>
+			<argument>service=IS-notary</argument>
+			<argument>contract_dir=contracts</argument>
+			<argument>logging=false</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+		</agent>
+		<agent name="normenv">
+			<class>ei.service.normenv.NormativeEnvironment</class>
+			<argument>service=IS-normative-environment</argument>
+			<argument>jess_file=config\normenv\normenv.clp</argument>
+			<argument>logging=false</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+		</agent>
+		<agent name="ctr">
+			<class>ei.service.ctr.CTR</class>
+			<argument>service=IS-ctr</argument>
+			<argument>ctr_evidences_filename=domoticsCompTrust.xml</argument>			
+		</agent>
+
+		<agent name="Bank">
+			<class>ei.agent.role.BankAgent</class>
+			<argument>role=IR-bank</argument>
+			<argument>accounts_file=config\bank\accounts.xml</argument>
+		</agent>
+		<agent name="DeliveryTracker">
+			<class>ei.agent.role.DeliveryTrackerAgent</class>
+			<argument>role=IR-delivery-tracker</argument>
+		</agent>
+		<agent name="Messenger">
+			<class>ei.agent.role.MessengerAgent</class>
+			<argument>role=IR-messenger</argument>
+		</agent>
+
+		<agent name="Supply1Ont1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\domotics\xml\Supply1Ont1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="Supply2Ont1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\domotics\xml\Supply2Ont1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.90</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.30</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="Supply3Ont2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\domotics\xml\Supply3Ont2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useOntoMapService=true</argument>	
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="Supply4Ont2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\domotics\xml\Supply4Ont2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.85</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.30</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useOntoMapService=true</argument>	
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="Supply5Ont1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\domotics\xml\Supply5Ont1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="Supply6Ont1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\domotics\xml\Supply6Ont1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		
+		<agent name="BuyerOnt1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\domotics\xml\Request1Ont1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>deadline_violations_denounce_probability=1.0</argument>
+			<argument>mapping_method=1</argument>
+			<argument>contractType=contract-of-sale</argument>
+			<argument>time_to_denounce=4000</argument>
+			<argument>risk_tolerance=0.8</argument>
+		</agent>		
+	</institutional-agents>
+</ei-config>

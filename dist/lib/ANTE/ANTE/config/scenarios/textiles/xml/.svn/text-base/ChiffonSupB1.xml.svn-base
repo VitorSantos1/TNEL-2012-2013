@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE business SYSTEM "../../../business.dtd">
+<business>  
+
+  <needs>      
+    <need type="Cotton" name="Cotton" productionVolume="9000000"> 
+      <attribute name="delivery" type="int">
+          <minvalue>7</minvalue>
+          <maxvalue>31</maxvalue> 
+          <prefvalue>28</prefvalue>
+      </attribute>
+      <attribute name="price" type="float">            
+          <minvalue>1.0</minvalue>
+          <maxvalue>10.0</maxvalue> 
+          <prefvalue>1.0</prefvalue>
+      </attribute> 
+      <attribute name="quantity" type="int">            
+          <minvalue>180000</minvalue>
+          <maxvalue>900000</maxvalue> 
+          <prefvalue>240000</prefvalue>
+      </attribute>
+    </need>       
+  </needs>
+
+  <competences>  
+    <competence type="Chiffon" name="Chiffon" stock="9000000"> 
+      <attribute name="delivery" type="int">
+          <minvalue>7</minvalue>
+          <maxvalue>1000</maxvalue> 
+          <prefvalue>500</prefvalue>
+      </attribute>
+      <attribute name="price" type="float">            
+          <minvalue>1.0</minvalue>
+          <maxvalue>50.0</maxvalue> 
+          <prefvalue>40.0</prefvalue>
+      </attribute> 
+      <attribute name="quantity" type="int">            
+          <minvalue>180000</minvalue>
+          <maxvalue>900000</maxvalue> 
+          <prefvalue>70000</prefvalue>
+      </attribute>
+    </competence>  
+  </competences>    
+</business>

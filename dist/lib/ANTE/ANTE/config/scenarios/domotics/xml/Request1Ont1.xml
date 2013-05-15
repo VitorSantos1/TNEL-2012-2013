@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE business SYSTEM "../../../business.dtd">
+<business>
+  <needs>
+    <need type="Switch" name="Switch_1"> 
+      <attribute name="price" type="float">            
+          <minvalue>1.0</minvalue>
+          <maxvalue>10.0</maxvalue> 
+          <prefvalue>10.0</prefvalue>
+      </attribute>
+      <attribute name="number_button" type="string">
+          <value>two</value>
+          <value>two</value> 
+          <prefvalue>one</prefvalue>
+      </attribute>
+    </need>
+    <need type="Alarm" name="Alarm_1"> 
+      <attribute name="price" type="float">            
+          <minvalue>40.0</minvalue>
+          <maxvalue>50.0</maxvalue> 
+          <prefvalue>40.0</prefvalue>
+      </attribute>
+      <attribute name="decibel" type="string">
+          <value>90db</value>
+          <value>110db</value> 
+          <prefvalue>90db</prefvalue>
+      </attribute>
+    </need>
+    <need type="Command" name="Command_2"> 
+      <attribute name="price" type="float">            
+          <minvalue>20.0</minvalue>
+          <maxvalue>30.0</maxvalue> 
+          <prefvalue>20.0</prefvalue>
+      </attribute>
+      <attribute name="code" type="string">
+          <value>false</value>
+          <value>true</value> 
+          <prefvalue>false</prefvalue>
+      </attribute>
+      <attribute name="reach" type="string">
+          <value>30m</value>
+          <value>50m</value> 
+          <prefvalue>50m</prefvalue>
+      </attribute>
+    </need>
+    <need  type="Camera" name="Camera_2"> 
+      <attribute name="price" type="float">            
+          <minvalue>180.0</minvalue>
+          <maxvalue>400.0</maxvalue> 
+          <prefvalue>180.0</prefvalue>
+      </attribute>
+      <attribute name="vision_angle" type="string">
+          <value>90º</value>
+          <value>120º</value>
+          <value>180º</value> 
+          <prefvalue>90º</prefvalue>
+      </attribute>
+      <attribute name="has_wireless" type="string">
+          <value>false</value>
+          <value>true</value> 
+          <prefvalue>false</prefvalue>
+      </attribute>
+      <attribute name="lens_size" type="string">
+          <value>20mm</value>
+          <value>35mm</value> 
+          <prefvalue>20mm</prefvalue>
+      </attribute>
+    </need>
+  </needs>
+</business>

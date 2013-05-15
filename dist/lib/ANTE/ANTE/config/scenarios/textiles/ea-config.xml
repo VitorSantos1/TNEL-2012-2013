@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ei-config SYSTEM "../../ei-config.dtd">
+<ei-config>
+	<jade-parameters>
+		<parameter>host=192.168.102.23</parameter>
+		<parameter>port=2010</parameter>
+	</jade-parameters>
+
+	<institutional-agents>
+		<agent name="RemoteBuyerAgent">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonBuyer.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>deadline_violations_denounce_probability=1.0</argument>
+			<argument>useTrustInPreselection=true</argument>
+			<argument>useTrustInProposalEvaluation=true</argument>
+			<argument>topNumberOfAgents=4</argument>
+			<argument>mapping_method=1</argument>
+			<argument>contractType=contract-of-sale</argument>
+			<argument>time_to_denounce=4000</argument>
+			<argument>risk_tolerance=0.8</argument>
+		</agent>
+	</institutional-agents>
+</ei-config>

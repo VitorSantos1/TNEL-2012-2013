@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp1 (http://www.altova.com) by Henrique Lopes Cardoso (DEEC/FEUP) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="contract">
+		<xs:annotation>
+			<xs:documentation>Generic contract</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0"/>
+							<xs:element name="when" type="xs:dateTime"/>
+							<xs:element name="who">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="agent" type="xs:string" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="super" type="xs:string" minOccurs="0"/>
+							<xs:element name="type" type="xs:string" minOccurs="0"/>
+							<xs:element name="contractual-info" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name" type="xs:string"/>
+										<xs:element name="slot" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="name" type="xs:string"/>
+													<xs:element name="value" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="rules" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="rule" type="ruleType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="norms" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="norm" type="normType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="valueAttributeType">
+		<xs:annotation>
+			<xs:documentation>From JessML</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SYMBOL"/>
+			<xs:enumeration value="STRING"/>
+			<xs:enumeration value="INTEGER"/>
+			<xs:enumeration value="VARIABLE"/>
+			<xs:enumeration value="FACT"/>
+			<xs:enumeration value="FLOAT"/>
+			<xs:enumeration value="FUNCALL"/>
+			<xs:enumeration value="LIST"/>
+			<xs:enumeration value="JAVA_OBJECT"/>
+			<xs:enumeration value="BINDING"/>
+			<xs:enumeration value="MULTIVARIABLE"/>
+			<xs:enumeration value="LONG"/>
+			<xs:enumeration value="LAMBDA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="varAllowedType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Similar to value element in JessML</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="type" type="valueAttributeType"/>
+	</xs:complexType>
+	<xs:complexType name="frameType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="slot" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="name" type="xs:string"/>
+						<xs:element name="value" type="varAllowedType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="fact" type="frameType">
+		<xs:annotation>
+			<xs:documentation>ontology for institutional-facts</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="expressionType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="num-operator">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="+"/>
+							<xs:enumeration value="-"/>
+							<xs:enumeration value="*"/>
+							<xs:enumeration value="/"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="expression" type="expressionType" minOccurs="2" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:element name="operand" type="varAllowedType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="situationElementType"/>
+	<xs:complexType name="andType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="situation_element" type="situationElementType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="orType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="situation_element" type="situationElementType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="notType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="situation_element" type="situationElementType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="startContractType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="when" type="varAllowedType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="contractualInfoType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="name" type="xs:string"/>
+					<xs:element name="slot" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="name" type="xs:string"/>
+								<xs:element name="value" type="varAllowedType"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ifactType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element ref="fact"/>
+					<xs:element name="when" type="varAllowedType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="timeType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="when" type="varAllowedType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="livelineViolationType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="bearer" type="varAllowedType"/>
+					<xs:element name="counterparty" type="varAllowedType"/>
+					<xs:element ref="fact"/>
+					<xs:element name="when" type="varAllowedType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="deadlineViolationType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="bearer" type="varAllowedType"/>
+					<xs:element name="counterparty" type="varAllowedType"/>
+					<xs:element ref="fact"/>
+					<xs:element name="when" type="varAllowedType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="fulfillmentType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="bearer" type="varAllowedType"/>
+					<xs:element name="counterparty" type="varAllowedType"/>
+					<xs:element ref="fact"/>
+					<xs:element name="when" type="varAllowedType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="violationType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="bearer" type="varAllowedType"/>
+					<xs:element name="counterparty" type="varAllowedType"/>
+					<xs:element ref="fact"/>
+					<xs:element name="when" type="varAllowedType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="relConditionType">
+		<xs:complexContent>
+			<xs:extension base="situationElementType">
+				<xs:sequence>
+					<xs:element name="rel-operator">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="eq"/>
+								<xs:enumeration value="gt"/>
+								<xs:enumeration value="ge"/>
+								<xs:enumeration value="lt"/>
+								<xs:enumeration value="le"/>
+								<xs:enumeration value="ne"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="expression" type="expressionType" minOccurs="2" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ruleType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="comment" type="xs:string" minOccurs="0"/>
+			<xs:element name="if">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ifact" type="ifactType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="then">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ifact" type="ifactType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="normType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="comment" type="xs:string" minOccurs="0"/>
+			<xs:element name="scope" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="contract-type" type="xs:string" minOccurs="0"/>
+						<xs:element name="id" type="varAllowedType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="situation">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="situation-element" type="situationElementType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="prescription">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="obligation" type="obligationType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="end-contract" type="endContractType"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="obligationType">
+		<xs:sequence>
+			<xs:element name="bearer" type="varAllowedType"/>
+			<xs:element name="counterparty" type="varAllowedType"/>
+			<xs:element ref="fact"/>
+			<xs:element name="liveline" type="expressionType" minOccurs="0"/>
+			<xs:element name="deadline" type="expressionType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="endContractType">
+		<xs:sequence>
+			<xs:element name="when" type="varAllowedType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!ELEMENT business              (needs*,competences*)>
+<!ELEMENT needs                 (need+)>
+<!ELEMENT need                  (attribute+)>
+<!ATTLIST need                  type CDATA #REQUIRED>
+<!ATTLIST need                  name CDATA #REQUIRED>
+<!ATTLIST need                  essential CDATA #IMPLIED>
+<!ATTLIST need                  productionVolume CDATA #IMPLIED>
+
+<!ELEMENT competences           (competence+)>
+<!ELEMENT competence            (attribute+)>
+<!ATTLIST competence            type CDATA #REQUIRED>
+<!ATTLIST competence            name CDATA #REQUIRED>
+<!ATTLIST competence            stock CDATA #IMPLIED>
+
+<!ELEMENT attribute             ((value+|(minvalue?,maxvalue?)),prefvalue?)>
+<!ATTLIST attribute             name CDATA #REQUIRED>
+<!ATTLIST attribute             type CDATA #REQUIRED>
+
+<!ELEMENT value                 (#PCDATA)>
+<!ELEMENT minvalue              (#PCDATA)>
+<!ELEMENT maxvalue              (#PCDATA)>
+<!ELEMENT prefvalue             (#PCDATA)>
+

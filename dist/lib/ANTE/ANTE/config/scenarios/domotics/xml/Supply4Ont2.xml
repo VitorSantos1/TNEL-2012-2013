@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE business SYSTEM "../../../business.dtd">
+<business>
+  <competences>
+    <competence type="Cutout" name="Interruptor_Duplo" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>1.0</minvalue>
+          <maxvalue>10.0</maxvalue> 
+          <prefvalue>4.0</prefvalue>
+      </attribute>
+      <attribute name="num_button" type="string">
+          <value>two</value>
+          <prefvalue>two</prefvalue>
+      </attribute>
+    </competence>       
+    <competence type="Control" name="Comando_Encriptado" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>44.0</minvalue>
+          <maxvalue>54.0</maxvalue> 
+          <prefvalue>54.0</prefvalue>
+      </attribute>
+      <attribute name="range" type="string">
+          <value>50m</value>
+          <prefvalue>50m</prefvalue>
+      </attribute>
+      <attribute name="cipher" type="string">
+          <value>true</value>
+          <prefvalue>true</prefvalue>
+      </attribute>
+  	</competence>
+    <competence type="Control" name="Comando" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>44.0</minvalue>
+          <maxvalue>54.0</maxvalue> 
+          <prefvalue>50.0</prefvalue>
+      </attribute>
+      <attribute name="range" type="string">
+          <value>50m</value>
+          <prefvalue>50m</prefvalue>
+      </attribute>
+      <attribute name="cipher" type="string">
+          <value>true</value>
+          <prefvalue>true</prefvalue>
+      </attribute>
+  	</competence>
+  </competences>       
+</business>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE business SYSTEM "../../../business.dtd">
+<business>
+<competences>
+  <competence type="Cutout" name="Interruptor_Simples" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>1.0</minvalue>
+          <maxvalue>10.0</maxvalue> 
+          <prefvalue>2.0</prefvalue>
+      </attribute>
+      <attribute name="num_button" type="string">
+          <value>one</value>
+          <prefvalue>one</prefvalue>
+      </attribute>
+  </competence>       
+  <competence type="Siren" name="Alarm_Interior" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>42.0</minvalue>
+          <maxvalue>120.0</maxvalue> 
+          <prefvalue>120.0</prefvalue>
+      </attribute>
+      <attribute name="db" type="string">
+          <value>90db</value>
+          <prefvalue>90db</prefvalue>
+      </attribute>
+  </competence> 
+  <competence type="Cutout" name="Interruptor_Duplo" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>48.0</minvalue>
+          <maxvalue>88.0</maxvalue> 
+          <prefvalue>88.0</prefvalue>
+      </attribute>
+      <attribute name="num_button" type="string">
+          <value>two</value>
+          <prefvalue>two</prefvalue>
+      </attribute>
+  </competence>      
+  <competence type="Siren" name="Alarm_Exterior" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>48.0</minvalue>
+          <maxvalue>88.0</maxvalue> 
+          <prefvalue>88.0</prefvalue>
+      </attribute>
+      <attribute name="db" type="string">
+          <value>90db</value>
+          <prefvalue>90db</prefvalue>
+      </attribute>
+  </competence> 
+  <competence type="Photographic_Equipment" name="Chiffon" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>200.0</minvalue>
+          <maxvalue>520.0</maxvalue> 
+          <prefvalue>520.0</prefvalue>
+      </attribute>
+      <attribute name="num_button" type="string">
+          <value>one</value>
+          <prefvalue>one</prefvalue>
+      </attribute>
+  </competence> 
+  <competence type="Cutout" name="Axis_207" stock="9000000"> 
+      <attribute name="price" type="float">            
+          <minvalue>1.0</minvalue>
+          <maxvalue>10.0</maxvalue> 
+          <prefvalue>2.0</prefvalue>
+      </attribute>
+      <attribute name="lens_dimension" type="string">
+          <value>20mm</value>
+          <prefvalue>20mm</prefvalue>
+      </attribute>
+      <attribute name="sight_grade" type="string">
+          <value>90º</value>
+          <prefvalue>90º</prefvalue>
+      </attribute>
+      <attribute name="wireless" type="string">
+          <value>true</value>
+          <prefvalue>true</prefvalue>
+      </attribute>
+  	</competence>
+  </competences>       
+</business>

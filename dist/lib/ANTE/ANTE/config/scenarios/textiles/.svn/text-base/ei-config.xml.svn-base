@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ei-config SYSTEM "../../ei-config.dtd">
+<ei-config>
+	<jade-parameters>
+		<parameter>local-port=2010</parameter>
+	</jade-parameters>
+
+	<institutional-agents>
+<!--
+		<agent name="rma">
+			<class>jade.tools.rma.rma</class>
+		</agent>
+-->
+		<agent name="Negotiation">
+			<class>ei.service.negotiation.qfnegotiation.QFNegotiationMediator</class>
+			<argument>service=IS-negotiation-facilitator</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>maxEntries_needsNegotiation=5</argument>			
+		</agent>
+
+		<agent name="Normative">
+			<class>ei.service.normenv.NormativeEnvironment</class>
+			<argument>service=IS-normative-environment</argument>
+			<argument>jess_file=config\normenv\normenv.clp</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+		</agent>
+
+		<agent name="Notary">
+			<class>ei.service.notary.Notary</class>
+			<argument>service=IS-notary</argument>
+			<argument>contract_dir=contracts</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+		</agent>
+		<agent name="Trust">
+			<class>ei.service.ctr.CTR</class>
+			<argument>service=IS-ctr</argument>
+<!-- 			<argument>ctr_evidences_filename=demo_textilesCompTrust.xml</argument>			 -->
+		</agent>
+
+		<agent name="Bank">
+			<class>ei.agent.role.BankAgent</class>
+			<argument>role=IR-bank</argument>
+<!-- 			<argument>accounts_file=config\bank\accounts.xml</argument> -->
+		</agent>
+
+		<agent name="Delivery-tracker">
+			<class>ei.agent.role.DeliveryTrackerAgent</class>
+			<argument>role=IR-delivery-tracker</argument>
+		</agent>
+
+		<agent name="Messenger">
+			<class>ei.agent.role.MessengerAgent</class>
+			<argument>role=IR-messenger</argument>
+		</agent>
+
+
+		<!-- Enterprise Agents -->
+<!-- 
+/////////// needs supplier
+-->
+		<agent name="SupChiffonG1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonSupG1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.95</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.18</argument>
+			<argument>obligation_fulfillment_min_time=0.15</argument>
+			<argument>obligation_fulfillment_max_time=0.16</argument>
+			
+			<argument>liveline_violations_denounce_probability=0.85</argument>
+			<argument>liveline_violations_denounce_min_time=0.25</argument>
+			<argument>liveline_violations_denounce_max_time=0.26</argument>
+			
+			<argument>deadline_violations_denounce_probability=0.75</argument>
+			<argument>deadline_violations_denounce_min_time=0.35</argument>
+			<argument>deadline_violations_denounce_max_time=0.36</argument>
+			
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupChiffonG2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonSupG2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.95</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupCottonG1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\CottonSupG1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.95</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.10</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupCottonG2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\CottonSupG2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.95</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+<!-- 
+/////////// regular supplier
+-->
+		<agent name="SupChiffonR1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonSupR1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupChiffonR2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonSupR2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.30</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupCottonR1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\CottonSupR1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.20</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupCottonR2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\CottonSupR2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.80</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.30</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+<!-- 
+/////////// bad supplier
+-->
+		<agent name="SupChiffonB1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonSupB1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.3</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.1</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupChiffonB2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonSupB2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.3</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.2</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupCottonB1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\CottonSupB1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.3</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.1</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupCottonB2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\CottonSupB2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.3</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.2</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupVoileB1">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\VoileSupB1.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.3</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.1</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>
+		<agent name="SupVoileB2">
+			<class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\VoileSupB2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=0.3</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.2</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+		</agent>		
+<!-- ........................... TESTES PAT ............................ -->
+<!--
+		<agent name="SupTestePat">
+			<class>ei.agent.enterpriseagent.enactment.BetrayalModelSupplier</class>
+			<argument>business=config\scenarios\textiles\xml\CottonSupG2.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>obligation_fulfillment_probability=1.0</argument>
+			<argument>obligation_delayed_fulfillment_probability=0.0</argument>
+			<argument>risk_tolerance=0.2</argument>
+			<argument>useQNegotiationStrategy=true</argument>
+			<argument>integrity=0.9</argument>
+			<argument>ability=1</argument>
+			<argument>minNumPastContracts=2</argument>
+			<argument>minNumActiveContracts=1</argument>
+			<argument>sanctionIrrelevant1=0.0</argument>
+			<argument>sanctionIrrelevant2=0.2</argument>
+		</agent>
+-->		
+<!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+ 		<agent name="BuyerChiffon1"> 
+ 		    <class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonBuyer.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>deadline_violations_denounce_probability=1.0</argument>
+			<argument>useTrustInPreselection=true</argument>
+			<argument>useTrustInProposalEvaluation=true</argument>
+			<argument>topNumberOfAgents=4</argument>
+			<argument>mapping_method=1</argument>
+			<argument>contractType=contract-of-sale</argument>
+<!-- 			<argument>auto_mode=true</argument> Does not work properly for now.-->
+			<argument>time_to_denounce=4000</argument>
+			<argument>risk_tolerance=0.8</argument>
+		</agent>
+<!--		
+ 		<agent name="BuyerChiffon2"> 
+ 		    <class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>  
+			<argument>business=config\scenarios\textiles\xml\ChiffonBuyer.xml</argument>  
+			<argument>contract_xsd=contracts\contract.xsd</argument>  
+			<argument>deadline_violations_denounce_probability=1.0</argument>
+			<argument>useTrustInPreselection=true</argument> 
+			<argument>topNumberOfAgents=4</argument>  
+			<argument>mapping_method=1</argument>
+			<argument>contractType=contract-of-sale</argument>
+			<argument>time_to_denounce=4000</argument> 
+			<argument>risk_tolerance=0.8</argument>  
+		</agent> 
+ 		<agent name="BuyerChiffon3"> 
+ 		    <class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonBuyer.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>deadline_violations_denounce_probability=1.0</argument>
+			<argument>useTrustInProposalEvaluation=true</argument>
+			<argument>mapping_method=1</argument>
+			<argument>contractType=contract-of-sale</argument>
+			<argument>time_to_denounce=4000</argument>
+			<argument>risk_tolerance=0.8</argument>
+		</agent>
+ 		<agent name="BuyerChiffon4">
+ 		    <class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class>
+			<argument>business=config\scenarios\textiles\xml\ChiffonBuyer.xml</argument>
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>deadline_violations_denounce_probability=1.0</argument>
+			<argument>mapping_method=1</argument>
+			<argument>contractType=contract-of-sale</argument>
+			<argument>time_to_denounce=4000</argument>
+			<argument>risk_tolerance=0.8</argument>
+		</agent> 
+-->		
+		<agent name="BuyerCotton1"> 
+		    <class>ei.agent.enterpriseagent.enactment.AutomaticEnterpriseAgent</class> 
+			<argument>business=config\scenarios\textiles\xml\CottonBuyer.xml</argument> 
+			<argument>contract_xsd=contracts\contract.xsd</argument>
+			<argument>deadline_violations_denounce_probability=1.0</argument>
+			<argument>mapping_method=1</argument>
+			<argument>contractType=contract-of-sale</argument>
+			<argument>time_to_denounce=4000</argument>
+			<argument>risk_tolerance=0.8</argument> 
+		</agent>
+	</institutional-agents>
+</ei-config>
