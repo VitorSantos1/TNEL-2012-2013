@@ -94,7 +94,7 @@ public class SinalphaCTRGui extends JFrame {
     }
 
     /**
-     * Initializes this object
+     * Initialises this object
      */
     private void initialize() {
         ctrPanel = new javax.swing.JPanel();
